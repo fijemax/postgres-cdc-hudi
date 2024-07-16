@@ -1,1 +1,1 @@
-docker compose exec -i postgres < postgres/data.sql
+docker compose exec -T postgres psql -U user -d db < postgres/data.sql
