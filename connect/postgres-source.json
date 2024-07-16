@@ -1,0 +1,16 @@
+{
+    "name": "basic-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "tasks.max": "1",
+        "database.hostname": "postgres",
+        "database.port": "5432",
+        "database.user": "user",
+        "database.password": "password",
+        "database.dbname": "db",
+        "database.server.name": "dbserver1",
+        "plugin.name": "pgoutput",
+        "snapshot.mode": "initial",
+        "topic.prefix": "cdc"
+    }
+}
