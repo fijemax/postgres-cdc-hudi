@@ -44,7 +44,7 @@ services:
       CONTROL_CENTER_CONNECT_HEALTHCHECK_ENDPOINT: "/connectors"
       CONTROL_CENTER_KSQL_KSQLDB1_URL: "http://ksqldb-server:8088"
       CONTROL_CENTER_KSQL_KSQLDB1_ADVERTISED_URL: "http://localhost:8088"
-      CONTROL_CENTER_SCHEMA_REGISTRY_URL: "http://apicurio:8080"
+      CONTROL_CENTER_SCHEMA_REGISTRY_URL: "http://apicurio:8080/apis/ccompat/v7"
       CONTROL_CENTER_REPLICATION_FACTOR: 1
       CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 1
       CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
@@ -114,7 +114,7 @@ services:
       KSQL_HOST_NAME: ksqldb-server
       KSQL_LISTENERS: "http://0.0.0.0:8088"
       KSQL_CACHE_MAX_BYTES_BUFFERING: 0
-      KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://apicurio:8080"
+      KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://apicurio:8080/apis/ccompat/v7"
       KSQL_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
       KSQL_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
       KSQL_KSQL_CONNECT_URL: "http://connect:8083"
@@ -135,7 +135,7 @@ services:
       KAFKA_REST_HOST_NAME: rest-proxy
       KAFKA_REST_BOOTSTRAP_SERVERS: "kafka:29092"
       KAFKA_REST_LISTENERS: "http://0.0.0.0:8082"
-      KAFKA_REST_SCHEMA_REGISTRY_URL: "http://apicurio:8080"
+      KAFKA_REST_SCHEMA_REGISTRY_URL: "http://apicurio:8080/apis/ccompat/v7"
 
   ### Postgres
 

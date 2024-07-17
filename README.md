@@ -29,4 +29,4 @@ This will load the necessary data into the database and create the Kafka Source 
 - [MinIO](http://localhost:9000)
 - [pgAdmin](http://localhost:5050)
 - [REST Proxy](http://localhost:8082)
-
+- [Spark](http://localhost:4041)
