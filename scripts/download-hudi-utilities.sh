@@ -1,1 +1,1 @@
-wget -O hudi/hudi.jar https://repo.maven.apache.org/maven2/org/apache/hudi/hudi-utilities-slim-bundle_2.13/0.15.0/hudi-utilities-slim-bundle_2.13-0.15.0.jar
+wget -O hudi/hudi.jar https://repo.maven.apache.org/maven2/org/apache/hudi/hudi-utilities-slim-bundle_2.12/0.15.0/hudi-utilities-slim-bundle_2.12-0.15.0.jar

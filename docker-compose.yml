@@ -167,6 +167,8 @@ services:
     image: bitnami/spark:latest
     volumes:
       - ./hudi:/opt/bitnami/spark/hudi
+      - ./scripts:/scripts
+      - ./spark-data:/data
     ports:
       - "4040:4040"
       - "4041:8080"
