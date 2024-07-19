@@ -30,3 +30,8 @@ This will load the necessary data into the database and create the Kafka Source 
 - [pgAdmin](http://localhost:5050)
 - [REST Proxy](http://localhost:8082)
 - [Spark](http://localhost:4041)
+
+
+## Warnings
+
+- Apicurio does not work with Hudi (at this time), so we're forced to use the Confluent Schema Registry.

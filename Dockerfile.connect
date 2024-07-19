@@ -1,0 +1,50 @@
+FROM quay.io/debezium/connect:2.7.0.Final
+
+# USER root
+
+ARG JAR_VERSION=7.6.2
+
+# Define the Connect plugins directory
+ENV CONNECT_PLUGINS_DIR=/kafka/connect
+
+ENV CONFLUENT_REPO=https://packages.confluent.io/maven/io/confluent
+ENV MAVEN_REPO=https://repo1.maven.org/maven2
+# Create a directory for the JARs
+RUN mkdir -p $CONNECT_PLUGINS_DIR/confluent_jars
+RUN mkdir -p $CONNECT_PLUGINS_DIR/misc_jars
+
+# Download Confluent Avro converter and dependencies
+# https://debezium.io/documentation/reference/stable/configuration/avro.html#deploying-confluent-schema-registry-with-debezium-containers
+RUN cd $CONNECT_PLUGINS_DIR/confluent_jars && \
+	curl -O ${CONFLUENT_REPO}/kafka-connect-avro-converter/${JAR_VERSION}/kafka-connect-avro-converter-${JAR_VERSION}.jar && \
+	curl -O ${CONFLUENT_REPO}/kafka-connect-avro-data/${JAR_VERSION}/kafka-connect-avro-data-${JAR_VERSION}.jar && \
+	curl -O ${CONFLUENT_REPO}/kafka-avro-serializer/${JAR_VERSION}/kafka-avro-serializer-${JAR_VERSION}.jar && \
+	curl -O ${CONFLUENT_REPO}/kafka-schema-serializer/${JAR_VERSION}/kafka-schema-serializer-${JAR_VERSION}.jar && \
+	curl -O ${CONFLUENT_REPO}/kafka-schema-converter/${JAR_VERSION}/kafka-schema-converter-${JAR_VERSION}.jar && \
+	curl -O ${CONFLUENT_REPO}/kafka-schema-registry-client/${JAR_VERSION}/kafka-schema-registry-client-${JAR_VERSION}.jar && \
+	curl -O ${CONFLUENT_REPO}/common-config/${JAR_VERSION}/common-config-${JAR_VERSION}.jar && \
+	curl -O ${CONFLUENT_REPO}/common-utils/${JAR_VERSION}/common-utils-${JAR_VERSION}.jar
+
+# Download additional required JARs
+RUN cd $CONNECT_PLUGINS_DIR/confluent_jars && \
+	curl -O ${MAVEN_REPO}/org/apache/avro/avro/1.11.3/avro-1.11.3.jar && \
+	curl -O ${MAVEN_REPO}/org/apache/commons/commons-compress/1.26.2/commons-compress-1.26.2.jar && \
+	curl -O ${MAVEN_REPO}/com/google/guava/failureaccess/1.0.2/failureaccess-1.0.2.jar && \
+	curl -O ${MAVEN_REPO}/com/google/guava/guava/30.1-jre/guava-30.1-jre.jar && \
+	curl -O ${MAVEN_REPO}/com/eclipsesource/minimal-json/minimal-json/0.9.6/minimal-json-0.9.6.jar && \
+	curl -O ${MAVEN_REPO}/com/google/re2j/re2j/1.6/re2j-1.6.jar && \
+	curl -O ${MAVEN_REPO}/org/slf4j/slf4j-api/1.7.32/slf4j-api-1.7.32.jar && \
+	curl -O ${MAVEN_REPO}/org/yaml/snakeyaml/1.29/snakeyaml-1.29.jar && \
+	curl -O ${MAVEN_REPO}/io/swagger/swagger-annotations/1.6.2/swagger-annotations-1.6.2.jar && \
+	curl -O ${MAVEN_REPO}/com/fasterxml/jackson/core/jackson-databind/2.13.0/jackson-databind-2.13.0.jar && \
+	curl -O ${MAVEN_REPO}/com/fasterxml/jackson/core/jackson-core/2.13.0/jackson-core-2.13.0.jar && \
+	curl -O ${MAVEN_REPO}/com/fasterxml/jackson/core/jackson-annotations/2.13.0/jackson-annotations-2.13.0.jar && \
+	curl -O ${MAVEN_REPO}/com/fasterxml/jackson/dataformat/jackson-dataformat-csv/2.13.0/jackson-dataformat-csv-2.13.0.jar && \
+	curl -O ${MAVEN_REPO}/io/debezium/logredactor/1.6.0.Final/logredactor-1.6.0.Final.jar && \
+	curl -O ${MAVEN_REPO}/io/debezium/logredactor-metrics/1.6.0.Final/logredactor-metrics-1.6.0.Final.jar
+
+# Switch back to the kafka user
+# USER kafka
+
+
+
