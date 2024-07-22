@@ -8,9 +8,9 @@
         "database.user": "user",
         "database.password": "password",
         "database.dbname": "db",
-        "database.server.name": "dbserver1",
         "plugin.name": "pgoutput",
         "snapshot.mode": "initial",
-        "topic.prefix": "cdc"
+        "topic.prefix": "cdc",
+        "tombstones.on.delete": "false"
     }
 }
