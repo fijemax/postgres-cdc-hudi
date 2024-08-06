@@ -1,4 +1,4 @@
-docker compose exec spark-master spark-submit \
+docker compose exec spark spark-submit \
 --class org.apache.hudi.utilities.streamer.HoodieStreamer \
 --packages org.apache.hudi:hudi-spark3.5-bundle_2.12:0.15.0,org.apache.hudi:hudi-utilities-slim-bundle_2.12:0.15.0 \
 --properties-file hudi/spark-config.properties \

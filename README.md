@@ -15,7 +15,7 @@ docker compose up -d
 
 2. **Initialize the environment**
 
-This will load the necessary data into the database and create the Kafka Source Connector.
+This will create the Kafka Source Connector.
 
 ```bash
 ./init.sh
@@ -42,7 +42,7 @@ docker compose exec minio mc admin user add data/hudi hudi hudi
 4. **Query the data**
 
 ```bash
-docker compose exec spark-master spark-shell --packages org.apache.hudi:hudi-spark3.5-bundle_2.12:0.15.0 --properties-file hudi/spark-config.properties
+docker compose exec spark spark-shell --packages org.apache.hudi:hudi-spark3.5-bundle_2.12:0.15.0 --properties-file hudi/spark-config.properties
 ```
 
 ```scala
