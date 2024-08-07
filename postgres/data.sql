@@ -27,7 +27,8 @@ SET default_table_access_method = heap;
 CREATE TABLE public.basic (
     id integer NOT NULL,
     name character varying(255),
-    age integer
+    age integer,
+    "timestamp" timestamp with time zone DEFAULT CURRENT_TIMESTAMP
 );
 
 
@@ -66,8 +67,9 @@ ALTER TABLE ONLY public.basic ALTER COLUMN id SET DEFAULT nextval('public.basic_
 -- Data for Name: basic; Type: TABLE DATA; Schema: public; Owner: user
 --
 
-COPY public.basic (id, name, age) FROM stdin;
-1	mou	5
+COPY public.basic (id, name, age, "timestamp") FROM stdin;
+2	john	19	2024-08-02 09:26:56.476282+00
+3	test	50	2024-08-02 09:26:56.476282+00
 \.
 
 
@@ -75,7 +77,7 @@ COPY public.basic (id, name, age) FROM stdin;
 -- Name: basic_id_seq; Type: SEQUENCE SET; Schema: public; Owner: user
 --
 
-SELECT pg_catalog.setval('public.basic_id_seq', 1, true);
+SELECT pg_catalog.setval('public.basic_id_seq', 3, true);
 
 
 --
