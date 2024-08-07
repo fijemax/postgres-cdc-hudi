@@ -15,39 +15,32 @@ docker compose up -d
 
 2. **Initialize the environment**
 
-This will create the Kafka Source Connector.
+This will download the Hudi utilities and create the Kafka Source Connector.
 
 ```bash
 ./init.sh
 ```
 
-Create a `hudi` bucket in MinIO
-
-```bash
-docker compose exec minio mc mb data/hudi
-```
-
-Create an access key and secret key for the bucket
-
-```bash
-docker compose exec minio mc admin user add data/hudi hudi hudi
-```
-
 3. **Start the ingestion**
 
 ```bash
-./scripts/spark-stream.sh
+./hudi-stream.sh
+```
+
+Sometimes the Postgres connector will fail to start, in that case, you can restart it with the following command:
+
+```bash
+docker compose restart connect
 ```
 
 4. **Query the data**
 
 ```bash
-docker compose exec spark spark-shell --packages org.apache.hudi:hudi-spark3.5-bundle_2.12:0.15.0 --properties-file hudi/spark-config.properties
+docker compose exec trino trino
 ```
 
-```scala
-val basicDF = spark.read.format("hudi").load("s3a://hudi/basic")
-basicDF.show()
+```sql
+SELECT (id, name, age)  hudi.default.basic;
 ```
 
 ## Services
@@ -59,9 +52,6 @@ basicDF.show()
 - [pgAdmin](http://localhost:5050)
 - [REST Proxy](http://localhost:8082)
 - [Spark](http://localhost:4041)
-
-## Query Hudi
-
 
 
 ## Warnings
