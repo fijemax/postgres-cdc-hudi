@@ -40,7 +40,8 @@ docker compose exec trino trino
 ```
 
 ```sql
-SELECT * FROM hudi.default.basic;
+SELECT * FROM hudi.default.basic1;
+SELECT * FROM hudi.default.basic2;
 ```
 
 ## Services

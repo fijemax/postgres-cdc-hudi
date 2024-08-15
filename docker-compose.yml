@@ -157,6 +157,7 @@ services:
     image: bitnami/spark:latest
     volumes:
       - ./hudi:/opt/bitnami/spark/hudi
+      - ./spark/src/test/resources/streamer-config/dfs-source.properties:/opt/bitnami/spark/src/test/resources/streamer-config/dfs-source.properties
     ports:
       - "4040:4040"
       - "4041:8080"
