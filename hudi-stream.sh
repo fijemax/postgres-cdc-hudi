@@ -8,7 +8,7 @@ docker compose exec spark spark-submit \
 --executor-memory 1g \
 hudi/hudi.jar \
 --table-type COPY_ON_WRITE \
---target-base-path s3a://hudi/database=default/table_name=basic \
+--target-base-path s3a://hudi/db/basic1 \
 --target-table basic \
 --source-class org.apache.hudi.utilities.sources.debezium.PostgresDebeziumSource \
 --payload-class org.apache.hudi.common.model.debezium.PostgresDebeziumAvroPayload \
